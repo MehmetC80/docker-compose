@@ -11,6 +11,7 @@ services:
     #- MONGO_INITDB_ROOT_PASSWORD=verysecretpassword
     env_file:
       - ./.env
+    container_name: mongodb
 
   backend:
     #build: ./backend
@@ -25,6 +26,7 @@ services:
       - /app/node_modules
     env_file:
       - ./.env
+    container_name: backend
     depends_on:
       - mongodb
   frontend:
@@ -37,6 +39,7 @@ services:
       - ./frontend/src:/app/src
     stdin_open: true
     tty: true
+    container_name: frontend
     depends_on:
       - backend
 
